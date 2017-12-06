@@ -178,30 +178,30 @@ import random
 secret = random.randint(1,10)
 print("Let's play a game!")
 i = 0                       
-while True:
+while True:               #Logical level1 Counter
     if i == 4:               
         print("You lose")
         break                
     else:
-        number = input("Please enter a random number ranged 1-10:")
-        while True:
-            if number.isdigit() == True:
+        number = input("Please enter a random number ranged 1-10:") #Input level 1
+        while True:              #Logical lever2.1 numbers or characters
+            if number.isdigit() == True:  
                 break
             else:
                 print("Invalid input,make sure the input has to be numbers.")
-                number = input("Please enter a random number ranged 1-10:")
-        while True:
+                number = input("Please enter a random number ranged 1-10:") #Input level 1-
+        while True:              #Logical lever2.2 number validation
             guess = int(number)
             if guess >= 1 and guess <= 10 and number.isdigit() == True:
                 break
             else:
-                if number.isdigit() == True:
+                if number.isdigit() == True:  #Logical level2.2.1 number from the wrong interval
                     print("Invalid input:please pick numbers from the given interval.")
-                    number = input("Please enter a random number ranged 1-10:")
-                else:
+                    number = input("Please enter a random number ranged 1-10:") #Input level 2
+                else:                         #Logical level2.2.2 not numbers
                     print("Invalid input,make sure the input has to be numbers.")
-                    number = input("Please enter a random number ranged 1-10:")
-        if guess == secret:                 
+                    number = input("Please enter a random number ranged 1-10:") #Input level 2-
+        if guess == secret:        #Logical lever 3 number comparison         
             print("Bingo!")
             break
         else:
@@ -211,7 +211,7 @@ while True:
             else:
                 print("Wrong number,you have " + str(3-i) + " more chance(s),higher please")
                 i = i+1
-if i ==0:
+if i ==0: #hit it at the first time
     print("Amazing!")
 print("Game Over")
 ```
