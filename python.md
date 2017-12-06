@@ -172,6 +172,7 @@ if i ==0:
     print("Amazing!")
 print("Game Over")
 ```
+
 ### Example1.7 Complete number Game
 ```python
 import random
@@ -215,3 +216,42 @@ if i ==0: #hit it at the first time
     print("Amazing!")
 print("Game Over")
 ```
+
+### Example1.7a Complete number game reviesed
+```Python
+import random
+secret = random.randint(1,10)
+print("Let's play a game!")
+i = 0                       
+while True:                       #llv.1 Counter
+    if i == 4:               
+        print("You lose")
+        break                
+    else:
+        number = input("Please enter a random number ranged 1-10:")                 #ilv.1 first input
+        while True:                                                                 #llv.2 number validation
+            if (number.isdigit() == True) and int(number) >= 1 and int(number) <= 10:
+                break
+            else:
+                if number.isdigit() == True:
+                    print("Invalid input:please pick numbers from the given interval.")
+                    number = input("Please enter a random number ranged 1-10:")         #ilv.2 wrong numbers
+                else:
+                    print("Invalid input,make sure the input has to be numbers.")
+                    number = input("Please enter a random number ranged 1-10:")         #ilv.2- characters
+
+        guess = int(number)
+        if guess == secret:                                                        #llv.3 Comparison
+            print("Bingo!")
+        else:
+            if guess > secret:
+                print("Wrong number,you have " + str(3-i) + " more chance(s),lower please.")  
+                i = i+1   
+            else:
+                print("Wrong number,you have " + str(3-i) + " more chance(s),higher please")
+                i = i+1
+if i ==0:
+    print("Amazing!")
+print("Game Over")
+```
+Use brackets can set priority for the part of code, so you can avoid using multiple lines to describe yourconditional statement. And you'd better don't do comparison between strings.
