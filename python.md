@@ -96,7 +96,7 @@ The code complexity get improved when we use logical loop.
 ### Example1.4 random number game with logical loop
 
 ```Python   
-import random #introduce random module
+import random #Introduce random module
 secret = random.randint(1,10) #pick up random integer at closed interval
 print("Let's play a game!")
 while True:
@@ -139,7 +139,7 @@ if i ==0:
     print("Amazing!")
 print("Game Over")
 ```
-### Example1.6 Input limited and chances limited random number game
+### Example1.6 Input number limited and chances limited random number game
 ```python
 import random
 secret = random.randint(1,10)
@@ -159,6 +159,49 @@ while True:
                 number = input("Please enter a random number ranged 1-10:")
                 guess = int(number)
         if guess == secret:                 #The stairs of logical judgments from here correspond the stairs of the former "While True", there is only order differences other than stairs differences.
+            print("Bingo!")
+            break
+        else:
+            if guess > secret:
+                print("Wrong number,you have " + str(3-i) + " more chance(s),lower please.")  
+                i = i+1   
+            else:
+                print("Wrong number,you have " + str(3-i) + " more chance(s),higher please")
+                i = i+1
+if i ==0:
+    print("Amazing!")
+print("Game Over")
+```
+### Example1.7 Complete number Game
+```python
+import random
+secret = random.randint(1,10)
+print("Let's play a game!")
+i = 0                       
+while True:
+    if i == 4:               
+        print("You lose")
+        break                
+    else:
+        number = input("Please enter a random number ranged 1-10:")
+        while True:
+            if number.isdigit() == True:
+                break
+            else:
+                print("Invalid input,make sure the input has to be numbers.")
+                number = input("Please enter a random number ranged 1-10:")
+        while True:
+            guess = int(number)
+            if guess >= 1 and guess <= 10 and number.isdigit() == True:
+                break
+            else:
+                if number.isdigit() == True:
+                    print("Invalid input:please pick numbers from the given interval.")
+                    number = input("Please enter a random number ranged 1-10:")
+                else:
+                    print("Invalid input,make sure the input has to be numbers.")
+                    number = input("Please enter a random number ranged 1-10:")
+        if guess == secret:                 
             print("Bingo!")
             break
         else:
