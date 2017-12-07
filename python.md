@@ -1,11 +1,11 @@
 Note for Python
 ================
 
-## 1、number game
-### escape character
+## 1、Number game
+### 1.1 escape character
 If the type of input is strings, then the strings should be encompassed by *""* or *''*. If the strings conlict to bif, you should add *\* as an escape character right before the conlicting character of your input to escape it from its bif function at a time. Btw *\* can also be the escape character of itself.
 
-### raw string
+### 1.2 raw string
 ```python
 str = 'C:\now'     
 print(str)
@@ -17,12 +17,12 @@ Because "\n" is a bif，the print will automatically linefeed. If you want the s
 
 Notice:1、*“（）”* is unnecessary, 2、it's inhibted to put *"\"* at the end of the strings
 
-### Example1.1 basic number game
+### Example 1.1 basic number game
 ```python
 print("Let's play a game!")
 number = input("Please enter a random number ranged 1-10:")         #Let users to input strings（Numbers here）
 guess = int(number)   #Convert strings to int and assign it to guess
-while guess != 6      #Put while at the beginning of loop body，use "!=" to stand for "until"(ternimate condition) ，use "==" to do logical judgment
+while guess != 6      #Put while at the beginning of loop body,*==* means equal to ,while *!=* means not
     number = input("Please enter a random number ranged 1-10:")
     guess = int(number)   
     if guess == 6:        
@@ -34,10 +34,15 @@ while guess != 6      #Put while at the beginning of loop body，use "!=" to sta
           print("Wrong number,higher please")
 print("Game Over")
 ```  
+#### *New command*
+```python
+while <condition> #the loop will kepp going until the condition become False
+    <loop body>
+```    
 
 The problem of this game is that the first input is only able to assign number to *guess* ,yet can not to do logical judgment. Improved version below:
 
-### Example1.2 number game plus
+### Example 1.2 number game plus
 ```python
 print("Let's play a game!")
 number = input("Please enter a random number ranged 1-10:")
@@ -74,7 +79,7 @@ print("Game Over")
 
 After the improment, it can do both assignment and logical judgment at the first input, while the cost is the increasing complexity when we put loopd body at the end of each branch of logical judgment.
 
-### Example1.3 number game with logical loop
+### Example 1.3 number game with logical loop
 ```python
 print("Let's play a game!")
 while True:                     #Put "while True" at the head of loop body, which avoids claiming the variable "guess" at the beginning
@@ -90,10 +95,18 @@ while True:                     #Put "while True" at the head of loop body, whic
             print("Wrong number,higher please")
 print("Game Over")
 ```
+#### *New command*
+```python
+while True: #the loop will end when <break> condition is met(True)
+    if <condition>:
+      break #<break> can be put next stair after any conditional statement
+    else:   #<break> follows principle of proximity for the nearest <while True:>
+      break #so the nested <while True:> and <break> won't interfere the outside
+```    
 
 The code complexity get improved when we use logical loop.
 
-### Example1.4 random number game with logical loop
+### Example 1.4 random number game with logical loop
 
 ```Python   
 import random #Introduce random module
@@ -112,7 +125,10 @@ while True:
             print("Wrong number,higher please")
 print("Game Over")
 ```
-### Example1.5 Chances limited random number game with special feedback
+#### *New command*  
+`improt random`   introduce random module  
+`x = random.randit(a,b)`    x is the name of variable,randit means to pick a integer randomlly, and (a,b) is a closed interval.
+### Example 1.5 Chances limited random number game with special feedback
 ```Python
 import random
 secret = random.randint(1,10)
@@ -139,7 +155,7 @@ if i ==0:
     print("Amazing!")
 print("Game Over")
 ```
-### Example1.6 Input number limited and chances limited random number game
+### Example 1.6 Input number limited and chances limited random number game
 ```python
 import random
 secret = random.randint(1,10)
@@ -241,8 +257,9 @@ while True:                       #llv.1 Counter
                     number = input("Please enter a random number ranged 1-10:")         #ilv.2- characters
 
         guess = int(number)
-        if guess == secret:                                                        #llv.3 Comparison
+        if guess == secret:                                                        #llv.3 comparison
             print("Bingo!")
+            break
         else:
             if guess > secret:
                 print("Wrong number,you have " + str(3-i) + " more chance(s),lower please.")  
@@ -250,8 +267,75 @@ while True:                       #llv.1 Counter
             else:
                 print("Wrong number,you have " + str(3-i) + " more chance(s),higher please")
                 i = i+1
-if i ==0:
+if i ==0: #hit the answer at the first time
     print("Amazing!")
 print("Game Over")
 ```
-Use brackets can set priority for the part of code, so you can avoid using multiple lines to describe yourconditional statement. And you'd better don't do comparison between strings.
+Using brackets can set priority for the part of code, so you can avoid using multiple lines to describe yourconditional statement. And you'd better don't do comparison between strings.
+
+#### *New command*  
+`x.isdigit()`   x is the name of variable  
+`isinstance(x,y)`    x is the name of variable and y is data type including *int*, *float*, *str*, *bool*.
+
+## 2、Mathematical operation
+### 2.1 Mutiple assignment
+```python
+a = b = c = d = 10
+```
+equals
+```python
+a = 10
+b = 10
+c = 10
+d = 10
+```
+### 2.2 Operation
+#### 2.2.1  Operate and assign
+```python
+a = 10
+a = 10 + 3
+```
+equals
+```python
+a = 10
+a += 3
+```
+It also applys to other operators like _-_, _\*_, _/_, _//_, _**_, _%_
+#### 2.2.2 */* and *//*
+*/* is True division while *//* is Floor division for it will return the result in integer, like:
+```python
+a = 10
+a // 2
+```
+equals
+```python
+a = 10
+int(a / 2)
+```
+#### 2.2.3 _**_ and _%_
+_**_ is an operator for exponentiation, like:
+```python
+a = 10
+a **= 10
+```
+the result will be `a = 10^10`.  
+
+And _%_ returns the residue in a division, like:
+```python
+a = 10
+a %= 3
+```
+equals
+```python
+a = 10
+a -= 3 * int(10 / 3)
+```
+
+### 2.3 Operation Priorities
+1. _\**_  *(the operator on the right side of it is prior to the one on the left)*
+2. _+_, _-_ *(positive and negative)*
+3. _+_, _-_, _*_, _/_, _//_
+4. _<_, _<=_, _>_, _>=_, _==_, _!=_
+5. _not_, _and_, _or_
+
+## 3. Branch and Loop
