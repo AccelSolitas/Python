@@ -332,10 +332,11 @@ a -= 3 * int(10 / 3)
 ```
 
 ### 2.3 Operation Priorities
-1. _\**_  *(the operator on the right side of it is prior to the one on the left)*
-2. _+_, _-_ *(positive and negative)*
-3. _+_, _-_, _*_, _/_, _//_
-4. _<_, _<=_, _>_, _>=_, _==_, _!=_
-5. _not_, _and_, _or_
-
+```
+1. **         #(the operator on the right side of it is prior to the one on the left)
+2. +, -       #(positive and negative)
+3. +, -, *, /, //
+4. <, <=, >, >=, ==, !=
+5. not, and, or
+```
 ## 3. Branch and Loop
